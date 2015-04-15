@@ -197,7 +197,6 @@ describe('async-timed-cargo', function() {
       var items = [1, 2, 3, 4, 5];
 
       var cargo = asyncTimedCargo(function(tasks, callback) {
-        assert.isTrue(cargo.running());
         done();
       }, 100, 5000);
 
@@ -205,15 +204,16 @@ describe('async-timed-cargo', function() {
         cargo.push(item);
       });
 
+      assert.isTrue(cargo.running());
+
       clock.tick(5000);
     });
 
-    it('running flag is true after start', function(done) {
+    it('running flag is false after stop', function(done) {
 
       var items = [1, 2, 3, 4, 5];
 
       var cargo = asyncTimedCargo(function(tasks, callback) {
-        assert.isFalse(cargo.running());
         done();
       }, 100, 5000);
 
@@ -223,7 +223,24 @@ describe('async-timed-cargo', function() {
 
       cargo.stop();
 
+      assert.isFalse(cargo.running());
+
       cargo.process();
+
+    });
+
+    it('running flag is false when processing', function(done) {
+
+      var items = [1, 2, 3, 4, 5];
+
+      var cargo = asyncTimedCargo(function(tasks, callback) {
+        assert.isFalse(cargo.running());
+        done();
+      }, 3, 5000);
+
+      items.forEach(function(item) {
+        cargo.push(item);
+      });
 
     });
 
