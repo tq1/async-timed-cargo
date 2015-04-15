@@ -2,7 +2,7 @@ var chai    = require('chai'),
     sinon   = require('sinon'),
     expect  = chai.expect,
     assert  = chai.assert,
-    asyncTimedCargo = require('../lib/async-timed-cargo')();
+    asyncTimedCargo = require('../lib/async-timed-cargo');
 
 describe('async-timed-cargo', function() {
 
