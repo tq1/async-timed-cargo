@@ -2,6 +2,8 @@
 
 [![Build Status](https://img.shields.io/travis/felipesabino/async-timed-cargo.svg?style=flat-square)](https://travis-ci.org/felipesabino/async-timed-cargo)
 
+[![NPM](https://nodei.co/npm/async-timed-cargo.png)](https://nodei.co/npm/async-timed-cargo/)
+
 [async.cargo](https://github.com/caolan/async#cargo) based task execution.
 
 ## Differences from async.cargo
