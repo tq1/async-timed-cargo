@@ -142,4 +142,91 @@ describe('async-timed-cargo', function() {
 
   });
 
+  describe('start/stop', function() {
+
+    it('stop cancells timer', function(done) {
+
+      var items = [1, 2, 3, 4, 5];
+
+      var cargo = asyncTimedCargo(function(tasks, callback) {
+        assert.fail('should not be called');
+      }, 100, 5000);
+
+      items.forEach(function(item) {
+        cargo.push(item);
+      });
+
+      cargo.stop();
+
+      clock.tick(5000);
+
+      setTimeout(function() {
+        done();
+      }, 1000);
+
+      clock.tick(1000);
+    });
+
+    it('start resets timer', function(done) {
+
+      var items = [1, 2, 3, 4, 5];
+
+      var started = false;
+
+      var cargo = asyncTimedCargo(function(tasks, callback) {
+        assert.isTrue(started);
+        done();
+      }, 100, 5000);
+
+      items.forEach(function(item) {
+        cargo.push(item);
+      });
+
+      cargo.stop();
+
+      clock.tick(5000);
+
+      cargo.start();
+      started = true;
+
+      clock.tick(5000);
+    });
+
+    it('running flag is true after start', function(done) {
+
+      var items = [1, 2, 3, 4, 5];
+
+      var cargo = asyncTimedCargo(function(tasks, callback) {
+        assert.isTrue(cargo.running());
+        done();
+      }, 100, 5000);
+
+      items.forEach(function(item) {
+        cargo.push(item);
+      });
+
+      clock.tick(5000);
+    });
+
+    it('running flag is true after start', function(done) {
+
+      var items = [1, 2, 3, 4, 5];
+
+      var cargo = asyncTimedCargo(function(tasks, callback) {
+        assert.isFalse(cargo.running());
+        done();
+      }, 100, 5000);
+
+      items.forEach(function(item) {
+        cargo.push(item);
+      });
+
+      cargo.stop();
+
+      cargo.process();
+
+    });
+
+  });
+
 });
