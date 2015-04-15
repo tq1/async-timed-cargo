@@ -1,0 +1,29 @@
+{
+  "name": "async-timed-cargo",
+  "version": "0.0.1",
+  "description": "An lib to periodically flush a collection with a limited size",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "async",
+    "timer",
+    "cargo"
+  ],
+  "author": "Felipe Sabino <felipe@sabino.me>",
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "chai": "1.10.0",
+    "mocha": "1.21.5",
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-mocha-test": "0.11.0",
+    "grunt-nodemon": "0.4.0",
+    "load-grunt-tasks": "3.1.0",
+    "colors": "1.0.3",
+    "glob": "4.0.2"
+  }
+}
