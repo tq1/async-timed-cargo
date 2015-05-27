@@ -1,6 +1,6 @@
 {
   "name": "async-timed-cargo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An lib to periodically flush a collection with a limited size based on async.cargo",
   "main": "./lib/async-timed-cargo.js",
   "scripts": {
