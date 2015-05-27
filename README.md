@@ -1,6 +1,6 @@
 # Async Timed Cargo
 
-[![Build Status](https://img.shields.io/travis/felipesabino/async-timed-cargo.svg?style=flat-square)](https://travis-ci.org/felipesabino/async-timed-cargo)
+[![Build Status](https://img.shields.io/travis/tq1/async-timed-cargo.svg?style=flat-square)](https://travis-ci.org/tq1/async-timed-cargo)
 
 [![NPM](https://nodei.co/npm/async-timed-cargo.png)](https://nodei.co/npm/async-timed-cargo/)
 
