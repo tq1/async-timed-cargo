@@ -1,5 +1,6 @@
 var chai    = require('chai'),
     sinon   = require('sinon'),
+    async   = require('async'),
     expect  = chai.expect,
     assert  = chai.assert,
     asyncTimedCargo = require('../lib/async-timed-cargo');
@@ -118,6 +119,50 @@ describe('async-timed-cargo', function() {
 
     });
 
+    it('can have multiple instances running in parallel', function(done){
+
+      var total1, total2;
+
+      var cargo1 = asyncTimedCargo(function(tasks, callback) {
+        total1 = tasks.length
+        callback();
+      }, 10, 300);
+
+      var cargo2 = asyncTimedCargo(function(tasks, callback) {
+        total2 = tasks.length
+        callback();
+      }, 10, 300);
+
+      async.parallel({
+        cargo1: function(callback) {
+          setTimeout(function() {
+            cargo1.push('1');
+            callback(null, 1);
+          }, 100);
+        },
+        cargo2: function(callback) {
+          setTimeout(function() {
+            cargo2.push('1');
+            cargo2.push('2');
+            callback(null, 2);
+          }, 150);
+        }
+      }, function(err, results) {
+
+        setTimeout(function() {
+          assert.notEqual(cargo1, cargo2);
+          assert.equal(total1, results.cargo1);
+          assert.equal(total2, results.cargo2);
+          done(err);
+        }, 1000);
+
+        clock.tick(1010);
+
+      });
+
+      clock.tick(310);
+
+    });
 
   });
 
